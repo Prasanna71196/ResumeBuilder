@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+
+  <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resume Builder | Login / Register</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<style>
+  .footer-large {
+  background: #047857;
+  color: #fff;
+  width: 100%;
+  padding-top: 46px;
+  padding-bottom: 32px;
+  margin-top: 48px;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+.footer-content-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  margin: 0 auto;
+  justify-content: flex-start;
+  gap: 60px;
+}
+.footer-brand-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 230px;
+  margin-bottom: 35px;
+}
+.footer-link-block {
+  display: flex;
+  gap: 85px;
+  flex: 1;
+  justify-content: flex-start;
+}
+.footer-link-block > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 180px;
+}
+.footer-section-title {
+  color: #b9bccb;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+.footer-link-block a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.15s;
+  font-weight: 400;
+  margin-bottom: 5px;
+  font-size: 1.06em;
+}
+.footer-link-block a:hover {
+  color: #56a0f3;
+  text-decoration: underline;
+}
+.footer-bottom-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 36px;
+  max-width: 1600px;
+  margin: 40px auto 0 auto;
+  padding-top: 35px;
+  border-top: 1.7px solid #27293a;
+}
+.footer-socmed-row a {
+  color: #b9bccb;
+  font-size: 1.23em;
+  margin: 1px 9px;
+  text-decoration: none;
+  transition: color 0.14s;
+  display: inline-block;
+}
+.footer-socmed-row a:hover {
+  color: white;
+  background: #047857;
+  border-radius: 50%;
+}
+@media (max-width: 1100px) {
+  .footer-content-wrap, .footer-bottom-row { flex-direction: column; gap: 18px; align-items: flex-start; }
+  .footer-link-block { flex-direction: column; gap: 28px; }
+  .footer-bottom-row { align-items: flex-start; }
+}
+@media (max-width: 650px) {
+  .footer-large { padding: 30px 0 16px 0; }
+  .footer-content-wrap, .footer-bottom-row {
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 13px;
+  }
+  .footer-brand-block, .footer-link-block > div { min-width: unset; }
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
+  gap: 10px;
+}
+
+.brand-logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 8px;
+  box-shadow: 0 1.5px 5px rgba(0,0,0,0.15);
+  margin-right: 8px;
+  background: #fff;
+  object-fit: cover;
+}
+
+.brand-text {
+  color: #232a3a;
+  font-size: 1.21em;
+  letter-spacing: 0.5px;
+}
+
+.brand-highlight {
+  color: white;
+  font-weight: 800;
+  margin-left: 3px;
+  letter-spacing: 1px;
+}
+
+/* Navbar dark variant (for footer on dark bg) */
+.footer .brand-text { color: #fafbfa; }
+.footer .brand-highlight { color: #75cbd3; }
+
+</style>
+</head>
+<body>
+  <header class="header">
+  <!-- For Header or Footer -->
+<div class="brand-logo">
+  <a href="{% url 'home' %}">
+    <img src="{% static 'images/logo.png' %}" alt="Vetri Templates Logo" class="brand-img">
+    <span class="brand-text">Vetri <span class="brand-highlight">Templates</span></span>
+  </a>
+</div>
+
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'templates' %}">Templates</a>
+      <a href="{% url 'details' %}">Details</a>
+      <a href="{% url 'resume' %}">Resume</a>
+    </nav>
+  </header>
+  <div class="main-content">
+    <div id="login-card" class="card">
+      <h2>Login</h2>
+      <input type="text" id="login-username" placeholder="Username" required>
+      <input type="password" id="login-password" placeholder="Password" required>
+      <div class="error" id="login-error"></div>
+      <button onclick="login()">Login</button>
+      <p>Don't have an account?
+        <span class="toggle-link" onclick="showRegister()">Register here</span>
+      </p>
+    </div>
+    <div id="register-card" class="card hidden">
+      <h2>Register</h2>
+      <input type="text" id="register-username" placeholder="Username" required>
+      <input type="password" id="register-password" placeholder="Password" required>
+      <div class="error" id="register-error"></div>
+      <button onclick="register()">Register</button>
+      <p>Already have an account?
+        <span class="toggle-link" onclick="showLogin()">Login here</span>
+      </p>
+    </div>
+  </div>
+ <footer class="footer-large">
+  <div class="footer-content-wrap">
+    <div class="brand-logo">
+  <a href="{% url 'home' %}">
+    <img src="{% static 'images/logo.png' %}" alt="Vetri Templates Logo" class="brand-img">
+    <span class="brand-text">Vetri <span class="brand-highlight">Templates</span></span>
+  </a>
+</div>
+    <div class="footer-link-block">
+      <div>
+        <div class="footer-section-title">RESUME</div>
+        <a href="#">AI Resume Builder</a>
+        <a href="#">ATS Scorer</a>
+        <a href="#">Resume Examples</a>
+        <a href="#">Resume Templates</a>
+        <div class="footer-section-title" style="margin-top:20px;">COVER LETTER</div>
+        <a href="#">Cover Letter Examples</a>
+        <a href="#">Cover Letter Templates</a>
+      </div>
+      <div>
+        <div class="footer-section-title">JOB SEEKERS</div>
+        <a href="#">Job Search</a>
+        <div class="footer-section-title" style="margin-top:20px;">RESOURCES</div>
+        <a href="#">Blog</a>
+        <a href="#">Resume Help</a>
+        <a href="#">Job Interview</a>
+        <a href="#">Career</a>
+        <a href="#">Writing A Resume</a>
+        <a href="#">Writing A Cover Letter</a>
+      </div>
+      <div>
+        <div class="footer-section-title">OUR COMPANY</div>
+        <a href="#">About Us</a>
+        <a href="#">Pricing</a>
+        <a href="#">Updates</a>
+        <a href="#">Sponsorship Program</a>
+        <a href="#">Media Kit</a>
+        <a href="#">Affiliates</a>
+      </div>
+      <div>
+        <div class="footer-section-title">SUPPORT</div>
+        <a href="#">FAQ</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Terms Of Service</a>
+        <a href="#">Privacy</a>
+        <a href="#">Right Of Withdrawal</a>
+        <a href="#">Do Not Sell, Do Not Share</a>
+        <a href="#">Your Privacy Choices</a>
+      </div>
+    </div>
+  </div>
+  
+</footer>
+
+
+  <script>
+  // Authentication using localStorage
+  function showRegister() {
+    document.getElementById('login-card').classList.add('hidden');
+    document.getElementById('register-card').classList.remove('hidden');
+  }
+  function showLogin() {
+    document.getElementById('register-card').classList.add('hidden');
+    document.getElementById('login-card').classList.remove('hidden');
+  }
+  function register() {
+    const username = document.getElementById('register-username').value.trim();
+    const password = document.getElementById('register-password').value.trim();
+    if (!username || !password) {
+      document.getElementById('register-error').textContent = "All fields required.";
+      return;
+    }
+    localStorage.setItem('resume_user', JSON.stringify({ username, password }));
+    document.getElementById('register-error').textContent = "";
+    showLogin();
+    document.getElementById('login-username').value = username;
+    document.getElementById('login-password').value = "";
+  }
+  function login() {
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value.trim();
+    const stored = JSON.parse(localStorage.getItem('resume_user') || '{}');
+    if (stored.username === username && stored.password === password) {
+      localStorage.setItem('logged_in', 'true');
+      localStorage.setItem('current_user', username);
+      window.location.href = "{% url 'templates' %}";
+    } else {
+      document.getElementById('login-error').textContent = "Invalid credentials. Register or try again.";
+    }
+  }
+  // Auto logout on page load
+  localStorage.removeItem('logged_in');
+  </script>
+</body>
+</html>

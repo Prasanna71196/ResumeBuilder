@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+<meta charset="UTF-8">
+<title>Resume - Template 2</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Volkhov:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<style>
+body { background: #faf6f2; font-family: 'Volkhov', serif; margin: 0;}
+.container2 { max-width: 720px; margin: 48px auto; background: #f7ede2; border-radius: 18px; box-shadow: 0 3px 20px #e7dac6; display: flex; min-height: 1000px; }
+.column2 { background: #cbb89d; width: 240px; padding: 62px 21px 62px 21px; text-align: center; color: #6d4e32; min-height: 1000px;}
+.main2 { flex: 1; padding: 74px 30px 74px 30px; min-height: 1000px; display: flex; flex-direction: column; justify-content: flex-start;}
+.avatar2 { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; background: #ad906a; margin-bottom: 13px;}
+.title2 { font-size: 31px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 4px; }
+.subtitle2 { font-size: 15px; font-style: italic; color: #816861; margin-bottom: 19px;}
+.block2 { margin-bottom: 28px;}
+.block2 h2 { font-size: 17px; color: #ad906a; font-weight: 700; margin-bottom: 9px;}
+.skills-bar { height: 7px; background: #e3e3e3; border-radius: 3px; margin-top: 4px; margin-bottom: 12px; position: relative; width: 80%; margin-left:auto; margin-right:auto;}
+.skills-bar-fill { background: #ad906a; height: 100%; border-radius: 3px; position: absolute; left:0; top:0;}
+.timeline-dot { width:9px; height:9px; background: #ad906a; border-radius:50%; display:inline-block; margin-right:7px; vertical-align:middle; }
+.timeline-block { margin-bottom:19px;}
+.timeline-title { font-size:15px; color:#ad906a;}
+.timeline-desc { margin-top:6px; margin-left:17px; font-size:13px; color:#7b614f;}
+.contact-info { margin-top:14px; font-size:15px; }
+.contact-info i { margin-right:7px; }
+#achievements{ color:#5d7f7c; }
+
+/* HEADER/FOOTER styles from home.html */
+.footer-large { background: #047857; color: #fff; width: 100%; padding-top: 46px; padding-bottom: 32px; margin-top: 48px; font-family: 'Poppins', Arial, sans-serif;}
+.footer-content-wrap { display: flex; flex-wrap: wrap; max-width: 1600px; margin: 0 auto; justify-content: flex-start; gap: 60px;}
+.footer-brand-block, .brand-logo { display: flex; align-items: center; gap: 12px; min-width: 230px; margin-bottom: 35px;}
+.footer-link-block { display: flex; gap: 85px; flex: 1; justify-content: flex-start; }
+.footer-link-block > div { display: flex; flex-direction: column; gap: 5px; min-width: 180px;}
+.footer-section-title { color: #b9bccb; font-weight: 600; margin-bottom: 8px; letter-spacing: 0.7px; text-transform: uppercase; margin-top: 5px;}
+.footer-link-block a { color: #fff; text-decoration: none; transition: color 0.15s; font-weight: 400; margin-bottom: 5px; font-size: 1.06em;}
+.footer-link-block a:hover { color: #56a0f3; text-decoration: underline;}
+.footer-bottom-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 36px; max-width: 1600px; margin: 40px auto 0 auto; padding-top: 35px; border-top: 1.7px solid #27293a;}
+.footer-socmed-row a { color: #b9bccb; font-size: 1.23em; margin: 1px 9px; text-decoration: none; transition: color 0.14s; display: inline-block;}
+.footer-socmed-row a:hover { color: white; background: #047857; border-radius: 50%; }
+@media (max-width: 1100px) { .footer-content-wrap, .footer-bottom-row { flex-direction: column; gap: 18px; align-items: flex-start; } .footer-link-block { flex-direction: column; gap: 28px; } .footer-bottom-row { align-items: flex-start; } }
+@media (max-width: 650px) { .footer-large { padding: 30px 0 16px 0; } .footer-content-wrap, .footer-bottom-row { flex-direction: column; gap: 12px; padding: 0 13px; } .footer-brand-block, .footer-link-block > div { min-width: unset; } }
+.brand-logo { display: flex; align-items: center; font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; font-weight: 700; font-size: 1.45rem; gap: 10px; }
+.brand-logo a { display: flex; align-items: center; text-decoration: none; }
+.brand-img { height: 40px; width: 40px; border-radius: 8px; box-shadow: 0 1.5px 5px rgba(0,0,0,0.15); margin-right: 8px; background: #fff; object-fit: cover; }
+.brand-text { color: #232a3a; font-size: 1.21em; letter-spacing: 0.5px;}
+.brand-highlight { color: white; font-weight: 800; margin-left: 3px; letter-spacing: 1px;}
+.footer .brand-text { color: #fafbfa; }
+.footer .brand-highlight { color: #75cbd3; }
+</style>
+</head>
+<body>
+<header class="header">
+<div class="brand-logo">
+<a href="{% url 'home' %}">
+<img src="{% static 'images/logo.png' %}" alt="Vetri Templates Logo" class="brand-img">
+<span class="brand-text">Vetri <span class="brand-highlight">Templates</span></span>
+</a>
+</div>
+<nav>
+<a href="{% url 'home' %}">Home</a>
+<a href="{% url 'templates' %}">Templates</a>
+<a href="{% url 'details' %}">Details</a>
+<a href="{% url 'resume' %}">Resume</a>
+</nav>
+<div id="nav-user"></div>
+<button onclick="logout()" style="margin-left:16px; background:#047857; color:white; border:none; border-radius:5px; padding:5px 18px; cursor:pointer;">Logout</button>
+</header>
+<div class="main-content">
+<div class="container2">
+<div class="column2">
+<img id="photo" class="avatar2" src="" alt="Profile">
+<div class="title2" id="name"></div>
+<div class="subtitle2" id="job-title">Graphic Designer</div>
+<div class="contact-info">
+<div><i class="fas fa-phone"></i> <span id="phone"></span></div>
+<div><i class="fas fa-envelope"></i> <span id="email"></span></div>
+<div><i class="fas fa-map-marker-alt"></i> <span id="address"></span></div>
+</div>
+<div style="margin-top:19px; text-align:left;">
+<div style="font-weight:700">EDUCATION</div>
+<div id="education"></div>
+</div>
+<div style="margin-top:19px; text-align:left;">
+<div style="font-weight:700">SKILLS</div>
+<div id="skillsbars"></div>
+</div>
+</div>
+<div class="main2">
+<div class="block2">
+<h2>PROFILE</h2>
+<div id="summary"></div>
+</div>
+<div class="block2">
+<h2>WORK EXPERIENCE</h2>
+<div id="timeline"></div>
+</div>
+<div class="block2">
+<h2>KEY ACHIEVEMENTS</h2>
+<div id="achievements"></div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer-large">
+<div class="footer-content-wrap">
+<div class="brand-logo">
+<a href="{% url 'home' %}">
+<img src="{% static 'images/logo.png' %}" alt="Vetri Templates Logo" class="brand-img">
+<span class="brand-text">Vetri <span class="brand-highlight">Templates</span></span>
+</a>
+</div>
+<div class="footer-link-block">
+<div>
+<div class="footer-section-title">RESUME</div>
+<a href="#">AI Resume Builder</a>
+<a href="#">ATS Scorer</a>
+<a href="#">Resume Examples</a>
+<a href="#">Resume Templates</a>
+<div class="footer-section-title" style="margin-top:20px;">COVER LETTER</div>
+<a href="#">Cover Letter Examples</a>
+<a href="#">Cover Letter Templates</a>
+</div>
+<div>
+<div class="footer-section-title">JOB SEEKERS</div>
+<a href="#">Job Search</a>
+<div class="footer-section-title" style="margin-top:20px;">RESOURCES</div>
+<a href="#">Blog</a>
+<a href="#">Resume Help</a>
+<a href="#">Job Interview</a>
+<a href="#">Career</a>
+<a href="#">Writing A Resume</a>
+<a href="#">Writing A Cover Letter</a>
+</div>
+<div>
+<div class="footer-section-title">OUR COMPANY</div>
+<a href="#">About Us</a>
+<a href="#">Pricing</a>
+<a href="#">Updates</a>
+<a href="#">Sponsorship Program</a>
+<a href="#">Media Kit</a>
+<a href="#">Affiliates</a>
+</div>
+<div>
+<div class="footer-section-title">SUPPORT</div>
+<a href="#">FAQ</a>
+<a href="#">Contact Us</a>
+<a href="#">Terms Of Service</a>
+<a href="#">Privacy</a>
+<a href="#">Right Of Withdrawal</a>
+<a href="#">Do Not Sell, Do Not Share</a>
+<a href="#">Your Privacy Choices</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+// Navbar user display + logout logic
+const curUser = localStorage.getItem('current_user');
+document.getElementById('nav-user').innerHTML = curUser ? ("Welcome, " + curUser + "!") : "";
+function logout() {
+localStorage.removeItem('logged_in');
+window.location.href = "{% url 'home' %}";
+}
+// Resume data population
+let data = JSON.parse(localStorage.getItem('resume_data')||'{}');
+document.getElementById('photo').src = data.photo || '';
+document.getElementById('name').innerText = data.name || '';
+document.getElementById('email').innerText = data.email || '';
+document.getElementById('phone').innerText = data.phone || '';
+document.getElementById('summary').innerText = data.summary || '';
+document.getElementById('address').innerText = data.address || '';
+document.getElementById('job-title').innerText = data.designation_1 || 'Graphic Designer';
+
+let eduHtml = '';
+if (data.school_10) eduHtml += data.school_10+'<br>';
+if (data.school_12) eduHtml += data.school_12+'<br>';
+if (data.college) eduHtml += data.college;
+document.getElementById('education').innerHTML = eduHtml;
+
+let skillsbars = '';
+if (data.skills) {
+let skillsArr = data.skills.split(',');
+skillsbars = skillsArr.map((sk,i)=>`<div>${sk}<div class="skills-bar"><div class="skills-bar-fill" style="width:${70+10*i}%"></div></div></div>`).join('');
+}
+document.getElementById('skillsbars').innerHTML = skillsbars;
+
+let timelineHtml = '';
+for (let i=1; data['company_name_'+i]; i++) {
+timelineHtml += `<div class="timeline-block">
+<span class="timeline-dot"></span>
+<span class="timeline-title">${data['company_name_'+i]} (${data['start_date_'+i]||''} – ${data['end_date_'+i]||''})</span>
+<div class="timeline-desc">${data['description_'+i]||''}</div>
+</div>`;
+}
+document.getElementById('timeline').innerHTML = timelineHtml;
+
+document.getElementById('achievements').innerText = data.achievements || '';
+</script>
+</body>
+</html>
