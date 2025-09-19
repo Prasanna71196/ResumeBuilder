@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+     'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -115,17 +116,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
 import os
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static"),
-# ]
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# URL to access static files
+STATIC_URL = '/static/'
+
+# During development, you can keep your dev static folder
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] 
+
+# Folder where collectstatic will gather all static files (for production)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Dev static folder(s) (optional, for local development)
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
